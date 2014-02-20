@@ -7,7 +7,7 @@ function _lean_time_ago( $type = 'post' ) {
 	$date = $d('G'); //get_post_time('G', true, $post);
  
 	/**
-	 * Where you see 'slim' below, you'd
+	 * Where you see 'lean' below, you'd
 	 * want to replace those with whatever term
 	 * you're using in your theme to provide
 	 * support for localization.
@@ -15,13 +15,13 @@ function _lean_time_ago( $type = 'post' ) {
  
 	// Array of time period chunks
 	$chunks = array(
-		array( 60 * 60 * 24 * 365 , __( 'year', 'slim' ), __( 'years', 'slim' ) ),
-		array( 60 * 60 * 24 * 30 , __( 'month', 'slim' ), __( 'months', 'slim' ) ),
-		array( 60 * 60 * 24 * 7, __( 'week', 'slim' ), __( 'weeks', 'slim' ) ),
-		array( 60 * 60 * 24 , __( 'day', 'slim' ), __( 'days', 'slim' ) ),
-		array( 60 * 60 , __( 'hour', 'slim' ), __( 'hours', 'slim' ) ),
-		array( 60 , __( 'minute', 'slim' ), __( 'minutes', 'slim' ) ),
-		array( 1, __( 'second', 'slim' ), __( 'seconds', 'slim' ) )
+		array( 60 * 60 * 24 * 365 , __( 'year', 'lean' ), __( 'years', 'lean' ) ),
+		array( 60 * 60 * 24 * 30 , __( 'month', 'lean' ), __( 'months', 'lean' ) ),
+		array( 60 * 60 * 24 * 7, __( 'week', 'lean' ), __( 'weeks', 'lean' ) ),
+		array( 60 * 60 * 24 , __( 'day', 'lean' ), __( 'days', 'lean' ) ),
+		array( 60 * 60 , __( 'hour', 'lean' ), __( 'hours', 'lean' ) ),
+		array( 60 , __( 'minute', 'lean' ), __( 'minutes', 'lean' ) ),
+		array( 1, __( 'second', 'lean' ), __( 'seconds', 'lean' ) )
 	);
  
 	if ( !is_numeric( $date ) ) {
@@ -38,7 +38,7 @@ function _lean_time_ago( $type = 'post' ) {
  
 	// Something went wrong with date calculation and we ended up with a negative date.
 	if ( 0 > $since )
-		return __( 'sometime', 'slim' );
+		return __( 'sometime', 'lean' );
  
 	/**
 	 * We only want to output one chunks of time here, eg:
@@ -61,10 +61,10 @@ function _lean_time_ago( $type = 'post' ) {
  
  
 	if ( !(int)trim($output) ){
-		$output = '0 ' . __( 'seconds', 'slim' );
+		$output = '0 ' . __( 'seconds', 'lean' );
 	}
  
-	$output .= __(' ago', 'slim');
+	$output .= __(' ago', 'lean');
  
 	return $output;
 }
