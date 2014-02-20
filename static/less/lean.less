@@ -86,9 +86,15 @@ address, code, kbd, tt, var{
 
 blockquote{
 	padding-left:2rem;
-	border-left:10px solid #bbb;
+	//border-left:10px solid #bbb;
 	font-size:1.6rem;
 	font-style:italic;
+	&:before{
+		font-family:FontAwesome;
+		content:'\f10d';
+		float:left;
+		margin-right:1rem;
+	}
 }
 strong{
 	font-weight:bold;
@@ -120,13 +126,19 @@ sup{
 }
 /* // Misc Tags */
 
-
+input{
+	margin:0;
+}
 input[type=text], textarea{
 	.box-sizing(border-box);
 	.rounded(3px);
 	//.inner-shadow();
 	border:none;
+	line-height:1;
 	padding:1rem;
+}
+textarea{
+	line-height:170%;
 }
 input[type=submit], input[type=button], input[type=reset]{
 	.rounded(3px);
@@ -168,10 +180,12 @@ dd{
 	padding-left:3rem;
 }
 ol{
-	list-style:decimal inside;
+	list-style:decimal outside;
+	padding-left:2rem;
 }
 ul{
-	list-style:circle inside;
+	list-style:circle outside;
+	padding-left:2rem;
 }
 li{
 	ul, ol{
@@ -217,6 +231,7 @@ li{
 	}
 	.widget ul{
 		list-style:none;
+		padding:0;
 		li{
 			&:before{
 				color:#ccc;
@@ -231,9 +246,12 @@ li{
 #logo{
 	display:block;
 	margin:20px 20px 0;
+	color:#fff;
+	font-size:3rem;
 }
 #menu-main{
-	margin-top:20px;
+	margin:20px 0 0 0;
+	padding:0;
 	li{
 		display:block;
 		&:before{
@@ -251,6 +269,7 @@ li{
 				display:block;
 				&.title{
 					font-size:1.6rem;
+					font-weight:500;
 					//font-family:@heading-font;
 					//text-transform:uppercase;
 				}
@@ -277,33 +296,65 @@ li{
 		content:@unicode;	
 	}
 }
+body{
+	&.blog, &.archive{
+		.heading{
+			border-bottom:none;
+			padding-bottom:0;
+		}
+	}
+}
 .post, .page{
 	position:relative;
-	padding:0 20px;
+	.heading{
+		padding:0 20px 20px;
+		border-bottom:1px solid #bbb;
+	}
 	.icon{
 		float:right;
 		margin-top:10px;
-		width:2rem;
-		height:2rem;
 	}
-	&.sticky{
-		.icon{
-			.icon('\f13d');
-		}
-	}
+
+	&.format-standard{ .icon{ .icon('\f0f6'); } }
+	&.format-aside{ .icon{ .icon('\f097'); } }
+	&.format-gallery{ .icon{ .icon('\f03e'); } }
+	&.format-link{ .icon{ .icon('\f0c1'); } }
+	&.format-image{ .icon{ .icon('\f083'); } }
+	&.format-quote{ .icon{ .icon('\f10e'); } }
+	&.format-status{ .icon{ .icon('\f0a1'); } }
+	&.format-video{ .icon{ .icon('\f03d'); } }
+	&.format-audio{ .icon{ .icon('\f130'); } }
+	&.format-chat{ .icon{ .icon('\f0e6'); } }
+	
+	&.sticky{ .icon{ .icon('\f13d'); } }
 	h1{
 		margin-right:2rem;
 		padding-top:10px;
 		a{ color:#474747; }
 		a:hover{ text-decoration:underline; }
 	}
+	.meta{
+		color:#666;
+		.row(12);
+		.clearfix();
+		.byline{
+			.column(10);
+		}
+		.comments-bubble{
+			.column(2);
+			text-align:right;
+		}
+	}
 	h1, h2, h3, h4, h5, h6{
 		color:#474747;
 	}
 	.entry{
-		padding-bottom:1rem;
+		padding:20px;
 		p{
 			margin:0 0 1rem;
+			&:last-child{
+				margin-bottom:0;
+			}
 		}
 		.wp-caption{
 			.clearfix;
@@ -394,16 +445,17 @@ li{
 
 .pagination{
 	padding:10px 20px;
-	.clearfix();
 	ul{
 		list-style:none;
+		padding:0;
+		.clearfix();
 		li{
 			float:left;
 			a, span{
 				display:block;
 				padding:.5rem 1rem;
 				
-				&.current{
+				&:hover, &.current{
 					background:#eee;
 				}
 			}
@@ -420,8 +472,11 @@ li{
 	h3{
 		.starting-title;
 	}
-	ol{
+	ol, ul{
 		list-style:none;
+	}
+	ol.commentlist{
+		padding-left:0;
 	}
 	
 	ol li.comment{
@@ -462,7 +517,7 @@ li{
 		}
 	}
 	ol ul.children{
-		padding-left:20px;
+		padding-left:48px;
 	}
 	
 	.comments-nav{
@@ -477,19 +532,24 @@ li{
 	h3{
 		.starting-title;
 	}
+	form{
+		.clearfix();
+	}
 	input[type=text], textarea{
 		width:100%;
 		border:1px solid #bbb;
+		
 	}
 	input[type=text]{
 		width:30rem;
+		height:3rem;
 	}
 	.field{
 		.row(12);
 		padding:5px 0;
 		label{
 			.column(2);
-			line-height:3;
+			line-height:3rem;
 			position:relative;
 			.required{
 				position:absolute;
@@ -503,6 +563,17 @@ li{
 		.input{
 			.column(10);
 		}
+	}
+	.form-submit{
+		.row(12);
+	}
+	.form-submit input[type=submit]{
+		.column(4);
+		.push(2);
+	}
+	.notes-after{
+		.column(10);
+		.push(2);
 	}
 }
 .widget_search{
@@ -542,7 +613,7 @@ li{
 		.column(4);
 	}
 	.widget{
-		padding:20px;
+		padding:20px 10px;
 	}
 	.widgettitle{
 		color:#fff;
@@ -569,6 +640,7 @@ li{
 		a{
 			display:block;
 			padding:0 0 0 1rem;
+			color:#bbb;
 		}
 		ul{
 			display:none;
@@ -595,7 +667,6 @@ li{
 	}
 	#content{ width: 75%; }
 	#sidebar{ width: 25%; }
-	#footer{ width: 100%; margin:0;}
 }
 @media screen and (max-width: 767px){
 	html{
@@ -612,7 +683,16 @@ li{
 		width:100%;
 	}
 	#footer{
-		width:100%;
-		margin:0;
+		.footer-column{
+			.column(12);
+		}
+	}
+}
+@media screen and (max-width: 550px){
+	#comment-form{
+		.form-submit input[type=submit]{
+			.column(10);
+			.push(2);
+		}
 	}
 }

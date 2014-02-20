@@ -68,8 +68,8 @@
 <div id="comment-form">
 	<?php comment_form(array(
 		'title_reply' => '<i class="fa fa-comments"></i> Join the discussion',
-		'comment_field' => '<div class="comment-f field"><label for="reply-comment">Comment <span class="required">*</span></label><div class="input"><textarea placeholder="Share your insights with us..." id="reply-comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></div></div>',
-		'comment_notes_after' => '<p><small>NOTE - You can use these HTML tags and attributes:</small></p>
-		<code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code> ',
+		'comment_notes_after' => '<div class="field"><div class="notes-after"><p><small>NOTE - You can use these HTML tags and attributes:</small></p>
+		<code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></div></div>',
+		'comment_notes_after' => '',
 	)); ?>
 </div> <!-- #comment-form -->

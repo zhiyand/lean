@@ -3,73 +3,13 @@
 include('inc/util.php');
 include('inc/MainNavWalker.class.php');
 
-/* Sidebar */
-
-$args = array(
-	'name'          => 'Homepage Sidebar',
-	'id'            => 'sidebar-home',
-	'description'   => 'The sidebar on the home page.',
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</div>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' );
-
-register_sidebar($args);
-
-$args = array(
-	'name'          => 'Single Sidebar',
-	'id'            => 'sidebar-single',
-	'description'   => 'The sidebar on single post pages.',
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</div>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' );
-
-register_sidebar($args);
-
-$args = array(
-	'name'          => 'Footer Column A',
-	'id'            => 'footer-col-a',
-	'description'   => 'Footer column on the left.',
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</div>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' );
-
-register_sidebar($args);
-
-$args = array(
-	'name'          => 'Footer Column B',
-	'id'            => 'footer-col-b',
-	'description'   => 'Footer column in the middle.',
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</div>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' );
-
-register_sidebar($args);
-
-$args = array(
-	'name'          => 'Footer Column C',
-	'id'            => 'footer-col-c',
-	'description'   => 'Footer column on the right.',
-	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	'after_widget'  => '</div>',
-	'before_title'  => '<h4 class="widgettitle">',
-	'after_title'   => '</h4>' );
-
-register_sidebar($args);
-
-register_nav_menu( 'Footer', 'Footer navigation' );
-register_nav_menu( 'Main', 'Main navigation' );
-
-
 class LeanTheme{
 	
-	private $_actions = array('after_setup_theme', 'wp_enqueue_scripts');
+	private $_actions = array('after_setup_theme', 'wp_enqueue_scripts', 'widgets_init');
 	private $_filters = array('comment_form_default_fields', 'comment_form_field_comment',
 		array('post_gallery', 10, 2),
 		array('img_caption_shortcode_width', 10, 3),
+		array('image_resize_dimensions', 10, 6),
 	);
 	
 	function __construct(){
@@ -100,9 +40,62 @@ class LeanTheme{
 
 	/* Actions */
 	function after_setup_theme(){
+        register_nav_menu( 'Footer', 'Footer navigation' );
+        register_nav_menu( 'Main', 'Main navigation' );
+
 		add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image',
 			'quote', 'status', 'video', 'audio', 'chat' ) );
 	}
+    function widgets_init(){
+        /* Sidebar */
+
+        register_sidebar( array(
+            'name'          => 'Homepage Sidebar',
+            'id'            => 'sidebar-home',
+            'description'   => 'The sidebar on the home page.',
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h4 class="widgettitle">',
+            'after_title'   => '</h4>' ) );
+
+        register_sidebar( array(
+            'name'          => 'Single Sidebar',
+            'id'            => 'sidebar-single',
+            'description'   => 'The sidebar on single post pages.',
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h4 class="widgettitle">',
+            'after_title'   => '</h4>' ) );
+
+        register_sidebar( array(
+            'name'          => 'Footer Column A',
+            'id'            => 'footer-col-a',
+            'description'   => 'Footer column on the left.',
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h4 class="widgettitle">',
+            'after_title'   => '</h4>' ) );
+
+
+        register_sidebar( array(
+            'name'          => 'Footer Column B',
+            'id'            => 'footer-col-b',
+            'description'   => 'Footer column in the middle.',
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h4 class="widgettitle">',
+            'after_title'   => '</h4>' ) );
+
+
+        register_sidebar( array(
+            'name'          => 'Footer Column C',
+            'id'            => 'footer-col-c',
+            'description'   => 'Footer column on the right.',
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h4 class="widgettitle">',
+            'after_title'   => '</h4>' ) );
+    }
 	function wp_enqueue_scripts(){
 		$tpl = get_template_directory_uri();
 		
@@ -122,6 +115,22 @@ class LeanTheme{
 	/* Filters */
 	function img_caption_shortcode_width($caption_width, $atts, $content){
 		return $caption_width -10;
+	}
+
+	// Up-scale small images
+	function image_resize_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, $crop ){
+	    if ( !$crop ) return null; // let the wordpress default function handle this
+ 
+	    $aspect_ratio = $orig_w / $orig_h;
+	    $size_ratio = max($new_w / $orig_w, $new_h / $orig_h);
+ 
+	    $crop_w = round($new_w / $size_ratio);
+	    $crop_h = round($new_h / $size_ratio);
+ 
+	    $s_x = floor( ($orig_w - $crop_w) / 2 );
+	    $s_y = floor( ($orig_h - $crop_h) / 2 );
+ 
+	    return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
 	}
 
 	function comment($comment, $args, $depth)
@@ -157,7 +166,7 @@ class LeanTheme{
 					<?php endif; ?>
 					<?php comment_text(); ?>
 				</div>
-			</li><!-- #comment-## -->
+			<!--</li> #comment-## -->
 
 		<?php
 				break;
