@@ -13,13 +13,6 @@ class LeanTheme{
     );
     
     function __construct(){
-        add_theme_support( 'post-thumbnails' );
-        add_image_size('-lean-full', 900, 450, true);
-        add_image_size('-lean-thumb', 420, 210, true);
-        add_image_size('-lean-thumb-3', 273, 136, true);
-        add_image_size('-lean-thumb-4', 200, 100, true);
-        //add_image_size('-lean-tiny', 75, 75, true);
-
         foreach($this->_actions as $action){
             if(is_array($action)){
                 add_action($action[0], array($this, $action[0]), $action[1], $action[2]);
@@ -34,7 +27,6 @@ class LeanTheme{
             }else{
                 add_action($filter, array($this, $filter));
             }
-            
         }
     }
 
@@ -45,6 +37,13 @@ class LeanTheme{
 
         add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image',
             'quote', 'status', 'video', 'audio', 'chat' ) );
+
+        add_theme_support( 'post-thumbnails' );
+        add_image_size('-lean-full', 900, 450, true);
+        add_image_size('-lean-thumb', 420, 210, true);
+        add_image_size('-lean-thumb-3', 273, 136, true);
+        add_image_size('-lean-thumb-4', 200, 100, true);
+        //add_image_size('-lean-tiny', 75, 75, true);
     }
     function widgets_init(){
         /* Sidebar */
@@ -133,7 +132,7 @@ class LeanTheme{
         return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
     }
 
-    function comment($comment, $args, $depth)
+    static function comment($comment, $args, $depth)
     {
         $GLOBALS['comment'] = $comment;
         switch ( $comment->comment_type ) :
@@ -337,25 +336,22 @@ class LeanTheme{
         return $output;
     }
 
+    static function paginavi(){
+        global $wp_query;
 
+        $inf = 999999;
+
+        $args = array(
+            'base'         => str_replace($inf, '%#%', get_pagenum_link($inf)),
+            'total'        => $wp_query->max_num_pages,
+            'current'      => max( 1, get_query_var('paged') ),
+            'prev_text'    => __('« Previous'),
+            'next_text'    => __('Next »'),
+            'type'         => 'list',
+        );
+        echo paginate_links( $args );
+    }
 };
-
-function _lean_paginavi(){
-    global $wp_query;
-
-    $inf = 999999;
-
-    $args = array(
-        'base'         => str_replace($inf, '%#%', get_pagenum_link($inf)),
-        'total'        => $wp_query->max_num_pages,
-        'current'      => max( 1, get_query_var('paged') ),
-        'prev_text'    => __('« Previous'),
-        'next_text'    => __('Next »'),
-        'type'         => 'list',
-    );
-    echo paginate_links( $args );
-}
-
 
 $_lean_theme = new LeanTheme();
 ?>

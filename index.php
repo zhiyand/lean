@@ -64,7 +64,7 @@
 <?php endwhile; else: ?>
 	<p>No posts found</p>
 <?php endif;?>
-		<div class="pagination"><?php _lean_paginavi();?></div>
+		<div class="pagination"><?php LeanTheme::paginavi();?></div>
 
 	</div><!-- #content -->
 	

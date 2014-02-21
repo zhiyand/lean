@@ -38,7 +38,7 @@
 				 * See firetuts_comment() in firetuts/functions.php for more.
 				 */
 				global $_lean_theme;
-				wp_list_comments( array( 'callback' => array($_lean_theme, 'comment') ) );
+				wp_list_comments( array( 'callback' => 'LeanTheme::comment') );
 			?>
 		</ol>
 
