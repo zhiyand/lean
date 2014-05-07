@@ -49,7 +49,18 @@ class LeanTheme{
         add_image_size('-lean-thumb-4', 200, 100, true);
         //add_image_size('-lean-tiny', 75, 75, true);
 
-        add_editor_style(array('static/css/reset.css', 'static/css/editor-style.css', 'static/font-awesome/css/font-awesome.min.css'));
+        add_editor_style(array('static/css/reset.css', 
+			'static/css/editor-style.css',
+			'static/font-awesome/css/font-awesome.min.css'));
+		
+		$args = array(
+		            'width'         => 480,
+		            'height'        => 160, 
+		            'default-image' => get_template_directory_uri() . '/static/img/logo-2.png',
+		            'header-text'   => false,
+		            'uploads'       => true,
+		        );
+		add_theme_support( 'custom-header', $args );
     }
     function widgets_init(){
         /* Sidebar */

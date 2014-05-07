@@ -1,7 +1,14 @@
 <?php get_header(); ?>
 
+<?php
+$lean_logo = get_header_image();
+    $lean_logo = $lean_logo
+    ? ('<img src="'. esc_url($lean_logo). '" />' )
+    : get_bloginfo('name');
+?>
+
 <div id="sidebar">
-	<a id="logo" href="<?php echo home_url();?>" title="<?php bloginfo('name');?>"><img src="<?php echo  get_template_directory_uri();?>/static/img/logo-2.png" /></a>
+	<a id="logo" href="<?php echo esc_url(home_url());?>" title="<?php bloginfo('name');?>"><?php echo $lean_logo; ?></a>
 	<?php
 
 	$defaults = array(
