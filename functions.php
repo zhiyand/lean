@@ -48,6 +48,8 @@ class LeanTheme{
         add_image_size('-lean-thumb-3', 273, 136, true);
         add_image_size('-lean-thumb-4', 200, 100, true);
         //add_image_size('-lean-tiny', 75, 75, true);
+
+        add_editor_style(array('static/css/reset.css', 'static/css/editor-style.css', 'static/font-awesome/css/font-awesome.min.css'));
     }
     function widgets_init(){
         /* Sidebar */

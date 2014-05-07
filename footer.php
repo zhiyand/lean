@@ -12,7 +12,7 @@
 			<?php dynamic_sidebar('footer-column-c'); ?>
 		</div>
 		
-		<div class="copyright"><p>&copy; <?php bloginfo('name');?> <?php echo date('Y');?> All rights reserved.</p>
+		<div class="copyright"><p>&copy; <?php bloginfo('name');?> <?php echo date('Y');?> All rights reserved. <a href="http://www.slimtheme.com/lean">The Lean Theme</a> by <a href="http://zhiyan.de">DUAN Zhiyan</a></p>
 			<?php
 			$menu = array(
 				'theme_location'  => 'Footer',

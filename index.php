@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <div id="sidebar">
-	<a id="logo" href="<?php echo home_url();?>" title="<?php bloginfo('name');?>"><img src="<?php bloginfo('template_url');?>/static/img/logo-2.png" /></a>
+	<a id="logo" href="<?php echo home_url();?>" title="<?php bloginfo('name');?>"><img src="<?php echo  get_template_directory_uri();?>/static/img/logo-2.png" /></a>
 	<?php
 
 	$defaults = array(
