@@ -3,15 +3,17 @@
 include('inc/util.php');
 include('inc/MainNavWalker.class.php');
 
+if ( ! isset( $content_width ) ) $content_width = 790;
+
 class LeanTheme{
-    
+
     private $_actions = array('after_setup_theme', 'wp_enqueue_scripts', 'widgets_init');
     private $_filters = array('comment_form_default_fields', 'comment_form_field_comment',
         array('post_gallery', 10, 2),
         array('img_caption_shortcode_width', 10, 3),
         array('image_resize_dimensions', 10, 6),
     );
-    
+
     function __construct(){
         foreach($this->_actions as $action){
             if(is_array($action)){
@@ -37,6 +39,8 @@ class LeanTheme{
 
         add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image',
             'quote', 'status', 'video', 'audio', 'chat' ) );
+
+        add_theme_support( 'automatic-feed-links' );
 
         add_theme_support( 'post-thumbnails' );
         add_image_size('-lean-full', 900, 450, true);
@@ -97,7 +101,7 @@ class LeanTheme{
     }
     function wp_enqueue_scripts(){
         $tpl = get_template_directory_uri();
-        
+
         wp_register_style('lean-fonts', 'http://fonts.googleapis.com/css?family=Quattrocento');
         wp_register_style('lean-reset', $tpl . '/static/css/reset.css');
         wp_register_style('lean-font-awesome', $tpl . '/static/font-awesome/css/font-awesome.min.css');
@@ -107,9 +111,11 @@ class LeanTheme{
         wp_enqueue_style('lean-reset');
         wp_enqueue_style('lean-font-awesome');
         wp_enqueue_style('lean');
-        
+
         wp_register_script('lean-rem', "$tpl/static/js/rem.min.js", '', '0.1', true);
         wp_enqueue_script('lean-rem');
+
+        if ( is_singular() ) wp_enqueue_script( "comment-reply" );
     }
     /* Filters */
     function img_caption_shortcode_width($caption_width, $atts, $content){
@@ -119,16 +125,16 @@ class LeanTheme{
     // Up-scale small images
     function image_resize_dimensions( $default, $orig_w, $orig_h, $new_w, $new_h, $crop ){
         if ( !$crop ) return null; // let the wordpress default function handle this
- 
+
         $aspect_ratio = $orig_w / $orig_h;
         $size_ratio = max($new_w / $orig_w, $new_h / $orig_h);
- 
+
         $crop_w = round($new_w / $size_ratio);
         $crop_h = round($new_h / $size_ratio);
- 
+
         $s_x = floor( ($orig_w - $crop_w) / 2 );
         $s_y = floor( ($orig_h - $crop_h) / 2 );
- 
+
         return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
     }
 
@@ -150,12 +156,12 @@ class LeanTheme{
                 <div class="vcard"> <?php echo get_avatar( $comment, 48 ); ?> </div>
                 <div class="text">
                     <div class="meta">
-    <?php printf( '<span class="fn">%s</span>', get_comment_author_link() ); ?> 
+    <?php printf( '<span class="fn">%s</span>', get_comment_author_link() ); ?>
                         <div class="misc">
     <?php printf( '<time pubdate datetime="%1$s">%2$s</time>',
         get_comment_time( 'c' ),
-        _lean_time_ago('comment'));?> 
-    <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'lean' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?> 
+        _lean_time_ago('comment'));?>
+    <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'lean' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
     <?php edit_comment_link( __( 'Edit', 'lean' ), '', '' ); ?>
                         </div>
                     </div>
@@ -165,7 +171,7 @@ class LeanTheme{
                     <?php endif; ?>
                     <?php comment_text(); ?>
                 </div>
-            <!--</li> #comment-## -->
+            </li><!-- #comment-## -->
 
         <?php
                 break;
@@ -203,7 +209,7 @@ class LeanTheme{
     function post_gallery($output, $attr) {
 
         $post = get_post();
-        
+
         static $instance = 0;
         $instance++;
 
@@ -234,7 +240,7 @@ class LeanTheme{
             'exclude'    => '',
             'link'       => ''
         ), $attr, 'gallery'));
-        
+
         $columns = intval($columns);
         switch($columns){
             case 1:
@@ -246,7 +252,7 @@ class LeanTheme{
             case 4:
             default:
             $size = '-lean-thumb-4'; break;
-            
+
         }
 
         $id = intval($id);
@@ -293,10 +299,10 @@ class LeanTheme{
         $selector = "gallery-$instance";
 
         $gallery_style = $gallery_div = '';
-        
+
         $size_class = sanitize_html_class( $size );
         $gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
-        
+
         $output = $gallery_div;
 
         $i = 0;
@@ -345,8 +351,8 @@ class LeanTheme{
             'base'         => str_replace($inf, '%#%', get_pagenum_link($inf)),
             'total'        => $wp_query->max_num_pages,
             'current'      => max( 1, get_query_var('paged') ),
-            'prev_text'    => __('« Previous'),
-            'next_text'    => __('Next »'),
+            'prev_text'    => __('&laquo; Previous', 'lean'),
+            'next_text'    => __('Next &raquo;', 'lean'),
             'type'         => 'list',
         );
         echo paginate_links( $args );

@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <div id="sidebar">
-	<a id="logo" href="<?php bloginfo('url');?>" title="<?php bloginfo('name');?>"><img src="<?php bloginfo('template_url');?>/static/img/logo-2.png" /></a>
+	<a id="logo" href="<?php echo home_url();?>" title="<?php bloginfo('name');?>"><img src="<?php bloginfo('template_url');?>/static/img/logo-2.png" /></a>
 	<?php
 
 	$defaults = array(
@@ -34,7 +34,9 @@
 		<div class="icon"></div>
 		<h1><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
 		<div class="meta">
-			<p class="byline"><?php the_author();?> published <a href="<?php the_permalink();?>"><?php echo _lean_time_ago();?></a>
+        <p class="byline"><?php the_author();?> published <a href="<?php the_permalink();?>"><?php echo _lean_time_ago();?></a> in <?php the_category(', ') ?>. 
+
+<?php the_tags() ?>
 	</p>
 			<div class="comments-bubble"><?php
 				if (empty($post->post_password)) {
@@ -43,7 +45,7 @@
 					__('<i class="fa fa-comment-o"></i> 1'), 
 					__('<i class="fa fa-comment-o"></i> %'), 
 					'comments-link', 
-					__(' ') );
+					__(' ', 'lean') );
 				}else{
 					echo '<i class="fa fa-lock"></i>';
 				}
