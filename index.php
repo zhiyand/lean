@@ -16,7 +16,7 @@ $lean_logo = get_header_image();
 		'container'       => false,
 		'menu_class'      => 'menu nav',
 		'menu_id'         => 'menu-main',
-		'walker'          => new MainNavWalker(),
+		'walker'          => new LeanMainNavWalker(),
 		'fallback_cb'     => '',
 	);
 

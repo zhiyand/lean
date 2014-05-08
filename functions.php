@@ -1,7 +1,7 @@
 <?php
 
 include('inc/util.php');
-include('inc/MainNavWalker.class.php');
+include('inc/LeanMainNavWalker.class.php');
 
 if ( ! isset( $content_width ) ) $content_width = 790;
 

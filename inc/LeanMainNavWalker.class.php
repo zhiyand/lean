@@ -1,6 +1,6 @@
 <?php
 
-class MainNavWalker extends Walker_Nav_Menu {
+class LeanMainNavWalker extends Walker_Nav_Menu {
 	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
 		global $wp_query;
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
