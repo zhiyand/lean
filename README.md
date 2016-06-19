@@ -1,0 +1,2 @@
+# lean
+Lean WordPress Theme
