@@ -1,4 +1,4 @@
-=== SlimWriter ===
+=== LEAN ===
 Contributors: dzy0451
 Donate link: http://www.slimtheme.com/lean/
 Tags: black, gray, white, two-columns, left-sidebar, responsive-layout, featured-images, threaded-comments, custom-menu, translation-ready
