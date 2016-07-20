@@ -214,6 +214,7 @@ hr {
 table {
   width: 100%;
   border-collapse: collapse;
+  margin: 15px 0;
 }
 th,
 td {
@@ -314,39 +315,8 @@ li ol {
   text-align: center;
   line-height: 100%;
 }
-#menu-main {
-  margin: 0;
-  padding: 0;
-}
-#menu-main li {
+.featured-image img {
   display: block;
-}
-#menu-main li:before {
-  content: '';
-}
-#menu-main li a {
-  padding: 5px 20px;
-  display: block;
-  color: #fff;
-}
-#menu-main li a:hover {
-  background: #000;
-  background: rgba(255, 255, 255, 0.2);
-}
-#menu-main li a span {
-  display: block;
-}
-#menu-main li a span.title {
-  font-size: 1.6rem;
-  font-weight: 500;
-}
-#menu-main li a span.sub {
-  color: #aaa;
-  font-size: 1.4rem;
-}
-#menu-main li.current-menu-item a {
-  background: #000;
-  background: rgba(255, 255, 255, 0.2);
 }
 body.blog .heading,
 body.archive .heading {
@@ -439,8 +409,8 @@ body.archive .heading {
 .page .meta {
   color: #666;
   display: block;
-  width: 101.66666666666666%;
-  margin: 0 -0.8333333333333334%;
+  width: 101.66666667%;
+  margin: 0 -0.83333333%;
   *zoom: 1;
 }
 .post .meta:before,
@@ -469,15 +439,15 @@ body.archive .heading {
 .page .meta .byline {
   display: inline;
   float: left;
-  width: 81.66666666666667%;
-  margin: 0 0.8333333333333334%;
+  width: 81.66666667%;
+  margin: 0 0.83333333%;
 }
 .post .meta .comments-bubble,
 .page .meta .comments-bubble {
   display: inline;
   float: left;
   width: 15%;
-  margin: 0 0.8333333333333334%;
+  margin: 0 0.83333333%;
   text-align: right;
 }
 .post h1,
@@ -497,6 +467,12 @@ body.archive .heading {
 .post .entry,
 .page .entry {
   padding: 20px;
+}
+.post .entry ul,
+.page .entry ul,
+.post .entry ol,
+.page .entry ol {
+  margin-bottom: 1rem;
 }
 .post .entry p,
 .page .entry p {
@@ -530,8 +506,8 @@ body.archive .heading {
 }
 .gallery {
   display: block;
-  width: 101.66666666666666%;
-  margin: 0 -0.8333333333333334%;
+  width: 101.66666667%;
+  margin: 0 -0.83333333%;
   *zoom: 1;
 }
 .gallery:before,
@@ -549,55 +525,55 @@ body.archive .heading {
 .gallery-columns-2 .gallery-item {
   display: inline;
   float: left;
-  width: 48.333333333333336%;
-  margin: 0 0.8333333333333334%;
+  width: 48.33333333%;
+  margin: 0 0.83333333%;
 }
 .gallery-columns-3 .gallery-item {
   display: inline;
   float: left;
-  width: 31.666666666666664%;
-  margin: 0 0.8333333333333334%;
+  width: 31.66666667%;
+  margin: 0 0.83333333%;
 }
 .gallery-columns-4 .gallery-item {
   display: inline;
   float: left;
-  width: 23.333333333333332%;
-  margin: 0 0.8333333333333334%;
+  width: 23.33333333%;
+  margin: 0 0.83333333%;
 }
 .gallery-columns-5 .gallery-item {
   display: inline;
   float: left;
-  width: 18.333333333333332%;
-  margin: 0 0.8333333333333334%;
+  width: 18.33333333%;
+  margin: 0 0.83333333%;
 }
 .gallery-columns-6 .gallery-item {
   display: inline;
   float: left;
   width: 15%;
-  margin: 0 0.8333333333333334%;
+  margin: 0 0.83333333%;
 }
 .gallery-columns-7 .gallery-item {
   display: inline;
   float: left;
-  width: 12.619047619047619%;
-  margin: 0 0.8333333333333334%;
+  width: 12.61904762%;
+  margin: 0 0.83333333%;
 }
 .gallery-columns-8 .gallery-item {
   display: inline;
   float: left;
-  width: 10.833333333333334%;
-  margin: 0 0.8333333333333334%;
+  width: 10.83333333%;
+  margin: 0 0.83333333%;
 }
 .gallery-columns-9 .gallery-item {
   display: inline;
   float: left;
-  width: 9.444444444444443%;
-  margin: 0 0.8333333333333334%;
+  width: 9.44444444%;
+  margin: 0 0.83333333%;
 }
 .group {
   display: block;
-  width: 101.66666666666666%;
-  margin: 0 -0.8333333333333334%;
+  width: 101.66666667%;
+  margin: 0 -0.83333333%;
   *zoom: 1;
 }
 .group:before,
@@ -611,26 +587,26 @@ body.archive .heading {
 .half {
   display: inline;
   float: left;
-  width: 48.333333333333336%;
-  margin: 0 0.8333333333333334%;
+  width: 48.33333333%;
+  margin: 0 0.83333333%;
 }
 .third {
   display: inline;
   float: left;
-  width: 31.666666666666664%;
-  margin: 0 0.8333333333333334%;
+  width: 31.66666667%;
+  margin: 0 0.83333333%;
 }
 .quarter {
   display: inline;
   float: left;
-  width: 23.333333333333332%;
-  margin: 0 0.8333333333333334%;
+  width: 23.33333333%;
+  margin: 0 0.83333333%;
 }
 .sixth {
   display: inline;
   float: left;
   width: 15%;
-  margin: 0 0.8333333333333334%;
+  margin: 0 0.83333333%;
 }
 .alignleft {
   float: left;
@@ -790,8 +766,8 @@ body.archive .heading {
 }
 #comment-form .field {
   display: block;
-  width: 101.66666666666666%;
-  margin: 0 -0.8333333333333334%;
+  width: 101.66666667%;
+  margin: 0 -0.83333333%;
   *zoom: 1;
   padding: 5px 0;
 }
@@ -807,7 +783,7 @@ body.archive .heading {
   display: inline;
   float: left;
   width: 15%;
-  margin: 0 0.8333333333333334%;
+  margin: 0 0.83333333%;
   line-height: 3rem;
   position: relative;
 }
@@ -824,13 +800,13 @@ body.archive .heading {
 #comment-form .field .input {
   display: inline;
   float: left;
-  width: 81.66666666666667%;
-  margin: 0 0.8333333333333334%;
+  width: 81.66666667%;
+  margin: 0 0.83333333%;
 }
 #comment-form .form-submit {
   display: block;
-  width: 101.66666666666666%;
-  margin: 0 -0.8333333333333334%;
+  width: 101.66666667%;
+  margin: 0 -0.83333333%;
   *zoom: 1;
 }
 #comment-form .form-submit:before,
@@ -844,16 +820,16 @@ body.archive .heading {
 #comment-form .form-submit input[type=submit] {
   display: inline;
   float: left;
-  width: 31.666666666666664%;
-  margin: 0 0.8333333333333334%;
-  margin-left: 17.499999999999996%;
+  width: 31.66666667%;
+  margin: 0 0.83333333%;
+  margin-left: 17.5%;
 }
 #comment-form .notes-after {
   display: inline;
   float: left;
-  width: 81.66666666666667%;
-  margin: 0 0.8333333333333334%;
-  margin-left: 17.499999999999996%;
+  width: 81.66666667%;
+  margin: 0 0.83333333%;
+  margin-left: 17.5%;
 }
 .widget_search {
   position: relative;
@@ -871,8 +847,8 @@ body.archive .heading {
 }
 #footer {
   display: block;
-  width: 101.66666666666666%;
-  margin: 0 -0.8333333333333334%;
+  width: 101.66666667%;
+  margin: 0 -0.83333333%;
   *zoom: 1;
   margin: 0 0;
   width: 100%;
@@ -901,8 +877,8 @@ body.archive .heading {
 #footer .footer-column {
   display: inline;
   float: left;
-  width: 31.666666666666664%;
-  margin: 0 0.8333333333333334%;
+  width: 31.66666667%;
+  margin: 0 0.83333333%;
 }
 #footer .widget {
   padding: 20px 10px;
@@ -945,6 +921,96 @@ body.archive .heading {
 }
 #menu-footer li ul {
   display: none;
+}
+#branding {
+  background: #222222;
+  height: 45px;
+  text-align: center;
+  display: none;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+#btn-mobile-menu-toggle {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  color: #999;
+  background: #333;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  font-size: 18px;
+  outline: none;
+}
+#btn-mobile-menu-toggle:before {
+  font-family: FontAwesome;
+  content: '\f0c9';
+}
+.menu-main {
+  margin: 0;
+  padding: 0;
+}
+.menu-main li {
+  display: block;
+}
+.menu-main li:before {
+  content: '';
+}
+.menu-main li a {
+  padding: 5px 20px;
+  display: block;
+  color: #fff;
+}
+.menu-main li a:hover {
+  background: #000;
+  background: rgba(255, 255, 255, 0.2);
+}
+.menu-main li a span {
+  display: block;
+}
+.menu-main li a span.title {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.menu-main li a span.sub {
+  color: #aaa;
+  font-size: 1.4rem;
+}
+.menu-main li.current-menu-item a {
+  background: #000;
+  background: rgba(255, 255, 255, 0.2);
+}
+#mobile-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 100%;
+  display: none;
+  background: #222222;
+  box-shadow: inset -3px 0 3px rgba(0, 0, 0, 0.25);
+}
+/** Animation **/
+#wrap {
+  position: relative;
+}
+#wrap.menu-visible {
+  left: 240px;
+}
+#wrap.animating {
+  transition: transform 0.25s ease-in-out;
+}
+#wrap.animating.left {
+  transform: translate3d(-240px, 0, 0);
+}
+#wrap.animating.right {
+  transform: translate3d(240px, 0, 0);
 }
 @media screen and (min-width: 1200px) {
   #wrap,
@@ -991,16 +1057,25 @@ body.archive .heading {
   #footer .footer-column {
     display: inline;
     float: left;
-    width: 98.33333333333333%;
-    margin: 0 0.8333333333333334%;
+    width: 98.33333333%;
+    margin: 0 0.83333333%;
   }
 }
 @media screen and (max-width: 550px) {
   #comment-form .form-submit input[type=submit] {
     display: inline;
     float: left;
-    width: 81.66666666666667%;
-    margin: 0 0.8333333333333334%;
-    margin-left: 17.499999999999996%;
+    width: 81.66666667%;
+    margin: 0 0.83333333%;
+    margin-left: 17.5%;
+  }
+  #branding {
+    display: block;
+  }
+  #sidebar {
+    display: none;
+  }
+  #content {
+    margin-top: 45px;
   }
 }

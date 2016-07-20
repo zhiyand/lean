@@ -163,6 +163,7 @@ hr{
 table{
 	width:100%;
 	border-collapse:collapse;
+    margin:15px 0;
 }
 th, td{
 	text-align:left;
@@ -254,51 +255,15 @@ li{
 	text-align:center;
 	line-height:100%;
 }
-#menu-main{
-	margin:0;
-	padding:0;
-	li{
-		display:block;
-		&:before{
-			content:'';
-		}
-		a{
-			padding:5px 20px;
-			display:block;
-			color:#fff;
-			&:hover{
-				background:#000;
-				background:rgba(255,255,255,0.2);
-			}
-			span{
-				display:block;
-				&.title{
-					font-size:1.6rem;
-					font-weight:500;
-					//font-family:@heading-font;
-					//text-transform:uppercase;
-				}
-				&.sub{
-					color:#aaa;
-					font-size:1.4rem;
-				}
-			}
-		}
-		&.current-menu-item a{
-			background:#000;
-			background:rgba(255,255,255,0.2);
-		}
-	}
-}
-
 .featured-image{
 	img{
+        display:block;
 	}
 }
 .icon(@unicode){
 	&:before{
 		font-family:FontAwesome;
-		content:@unicode;	
+		content:@unicode;
 	}
 }
 body{
@@ -330,7 +295,7 @@ body{
 	&.format-video{ .icon{ .icon('\f03d'); } }
 	&.format-audio{ .icon{ .icon('\f130'); } }
 	&.format-chat{ .icon{ .icon('\f0e6'); } }
-	
+
 	&.sticky{ .icon{ .icon('\f13d'); } }
 	h1{
 		margin-right:2rem;
@@ -355,6 +320,9 @@ body{
 	}
 	.entry{
 		padding:20px;
+        ul, ol{
+            margin-bottom:1rem;
+        }
 		p{
 			margin:0 0 1rem;
 			&:last-child{
@@ -439,7 +407,7 @@ body{
 .aligncenter{
 	margin:0 auto;
 }
-.size-auto, 
+.size-auto,
 .size-full,
 .size-large,
 .size-medium,
@@ -459,7 +427,7 @@ body{
 			a, span{
 				display:block;
 				padding:.5rem 1rem;
-				
+
 				&:hover, &.current{
 					background:#eee;
 				}
@@ -473,7 +441,7 @@ body{
 	border:1px solid #bbb;
 	border-width:1px 0;
 	background:#eee;
-	
+
 	h3{
 		.starting-title;
 	}
@@ -483,14 +451,14 @@ body{
 	ol.commentlist{
 		padding-left:0;
 	}
-	
+
 	ol li.comment{
 		padding:10px 0;
 		.clearfix();
 		.vcard{
 			float:left;
 			width:48px;
-			
+
 			img{
 				border-radius:48px;
 			}
@@ -525,7 +493,7 @@ body{
 	ol ul.children{
 		padding-left:48px;
 	}
-	
+
 	.comments-nav{
 		.clearfix();
 		.nav-previous{ float:left; }
@@ -534,7 +502,7 @@ body{
 }
 #comment-form{
 	padding:20px;
-	
+
 	h3{
 		.starting-title;
 	}
@@ -544,7 +512,7 @@ body{
 	input[type=text], textarea{
 		width:100%;
 		border:1px solid #bbb;
-		
+
 	}
 	input[type=text]{
 		width:30rem;
@@ -654,51 +622,7 @@ body{
 	}
 }
 
-@media screen and (min-width:1200px){
-	html{
-		//font-size:87.5%;
-	}
-	#wrap, .cnt{ width:1100px; }
-	#content{ width:830px; }
-	#sidebar{ width:270px; }
-	.post, .page{
-		//width:680px;
-	}
-}
 
-@media screen and (min-width:768px) and (max-width: 959px){
-	#wrap, .cnt{
-		width:100%;
-		margin:0;padding:0;
-	}
-	#content{ width: 75%; }
-	#sidebar{ width: 25%; }
-}
-@media screen and (max-width: 767px){
-	html{
-		font-size:62.5%;
-	}
-	#wrap, .cnt{
-		width:100%;
-		margin:0;padding:0;
-	}
-	#content{
-		width:100%;
-	}
-	#sidebar{
-		width:100%;
-	}
-	#footer{
-		.footer-column{
-			.column(12);
-		}
-	}
-}
-@media screen and (max-width: 550px){
-	#comment-form{
-		.form-submit input[type=submit]{
-			.column(10);
-			.push(2);
-		}
-	}
-}
+@import 'navigation.less';
+@import 'events.less';
+@import 'responsive.less';

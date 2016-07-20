@@ -11,12 +11,28 @@
 	<?php wp_head();?>
 </head>
 <body <?php body_class(); ?>>
-	<!-- 
-<div id="header">
-	<div class="cnt">
-		<a id="brand" href="<?php echo home_url();?>"><?php echo bloginfo('name');?></a>
-	</div>
+
+
+<div id="mobile-nav">
+	<?php
+
+	$defaults = array(
+		'theme_location'  => 'Main',
+		'container'       => false,
+		'menu_class'      => 'menu nav menu-main',
+		'menu_id'         => 'menu-main',
+		'walker'          => new LeanMainNavWalker(),
+		'fallback_cb'     => '',
+	);
+
+	wp_nav_menu( $defaults );
+
+	?>
 </div>
-		-->
+
 <div id="wrap">
 	<div id="main">
+        <div id="branding">
+            <button id="btn-mobile-menu-toggle"></button>
+            <a href="<?php echo esc_url(home_url());?>" title="<?php bloginfo('name');?>"><img src="<?php echo esc_url(get_header_image()); ?>" style="height:45px;"></a>
+        </div>

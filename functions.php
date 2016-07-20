@@ -49,13 +49,13 @@ class LeanTheme{
         add_image_size('-lean-thumb-4', 200, 100, true);
         //add_image_size('-lean-tiny', 75, 75, true);
 
-        add_editor_style(array('static/css/reset.css', 
+        add_editor_style(array('static/css/reset.css',
 			'static/css/editor-style.css',
 			'static/font-awesome/css/font-awesome.min.css'));
-		
+
 		$args = array(
 		            'width'         => 480,
-		            'height'        => 160, 
+		            'height'        => 160,
 		            'default-image' => get_template_directory_uri() . '/static/img/logo-2.png',
 		            'header-text'   => false,
 		            'uploads'       => true,
@@ -115,7 +115,7 @@ class LeanTheme{
     function wp_enqueue_scripts(){
         $tpl = get_template_directory_uri();
 
-        wp_register_style('lean-fonts', 'http://fonts.googleapis.com/css?family=Quattrocento');
+        wp_register_style('lean-fonts', '//fonts.googleapis.com/css?family=Quattrocento');
         wp_register_style('lean-reset', $tpl . '/static/css/reset.css');
         wp_register_style('lean-font-awesome', $tpl . '/static/font-awesome/css/font-awesome.min.css');
         wp_register_style('lean', $tpl . '/static/css/lean.css');
@@ -126,7 +126,9 @@ class LeanTheme{
         wp_enqueue_style('lean');
 
         wp_register_script('lean-rem', "$tpl/static/js/rem.min.js", '', '0.1', true);
+        wp_register_script('lean-lean', "$tpl/static/js/lean.js", '', '0.1', true);
         wp_enqueue_script('lean-rem');
+        wp_enqueue_script('lean-lean');
 
         if ( is_singular() ) wp_enqueue_script( "comment-reply" );
     }
@@ -373,4 +375,5 @@ class LeanTheme{
 };
 
 $_lean_theme = new LeanTheme();
+
 ?>
